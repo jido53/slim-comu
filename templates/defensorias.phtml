@@ -1,0 +1,22 @@
+<h1>Listado de Defensorias</h1>
+
+
+<table class="pure-table">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+    
+    </tr>
+
+<?php foreach ($defensorias as $defensoria): ?>
+
+    <tr>
+        <td><?=$defensoria->getOrg_id() ?></td>
+        <td><?=$defensoria->getOrg_descr() ?></td>
+        <td><?=$defensoria->getOrg_mail() ?> ...</td>
+
+    </tr>
+
+<?php endforeach; ?>
+</table>

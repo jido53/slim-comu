@@ -1,0 +1,12 @@
+<?php
+/*
+"host=10.11.8.69 port=5432 dbname=iurix user=gbuhl password=bjNS@!6a";
+*/
+
+$config['db']['host']   = '';
+$config['db']['port']   = '';
+$config['db']['user']   = '';
+$config['db']['pass']   = '';
+$config['db']['dbname'] = '';
+
+?>
