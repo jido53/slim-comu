@@ -39,8 +39,8 @@ $app->get('/defensorias', function (Request $request, Response $response) {
     $this->logger->addInfo("Listado de Defensorias");
     $mapper = new DefensoriaMapper($this->db);
     $defensorias = $mapper->getDefensorias();
-    $response = $this->view->render($response, "defensorias.phtml", ["defensorias" => $defensorias]);//, "router" => $this->router]);
-    //$response->getBody()->write(var_export($defensorias, true));
+    //$response = $this->view->render($response, "defensorias.phtml", ["defensorias" => $defensorias]);//, "router" => $this->router]);
+    $response->getBody()->write(var_export($defensorias, true));
     return $response;
 });
 
