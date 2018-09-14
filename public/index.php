@@ -19,12 +19,14 @@ $container = $app->getContainer();
 // Register component on container
 $container['view'] = function ($container) {
     $view = new \Slim\Views\Twig('../templates', [
-        'cache' => '../cache'
+        'cache' => false,
+        'debug' => true
     ]);
 
     // Instantiate and add Slim specific extension
     $basePath = rtrim(str_ireplace('index.php', '', $container->get('request')->getUri()->getBasePath()), '/');
     $view->addExtension(new Slim\Views\TwigExtension($container->get('router'), $basePath));
+    $view->addExtension(new Twig_Extension_Debug());
 
     return $view;
 };
@@ -45,15 +47,18 @@ $container['db'] = function ($c) {
     return $pdo;
 };
 
-$container['view'] = new \Slim\Views\PhpRenderer('../templates/');
+//$container['view'] = new \Slim\Views\PhpRenderer('../templates/');
 
 $app->get('/defensorias', function (Request $request, Response $response) {
-    $this->logger->addInfo("Listado de Defensorias");
+    $this->logger->addInfo("Listado de Defensorias con twig");
     $mapper = new DefensoriaMapper($this->db);
     $defensorias = $mapper->getDefensorias();
-    $response = $this->view->render($response, "defensorias.phtml", ["defensorias" => $defensorias]);//, "router" => $this->router]);
+    //var_dump($defensorias);
+    return $this->view->render($response, 'defensoria.html',['defensorias' => $defensorias] );
+
+    //$response = $this->view->render($response, "defensorias.phtml", ["defensorias" => $defensorias]);//, "router" => $this->router]);
     //$response->getBody()->write(var_export($defensorias, true));
-    return $response;
+    //return $response;
 });
 
 $app->get('/hello/{name}', function ($request, $response, $args) {

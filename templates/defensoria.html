@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Listado de Defensorias Penales</h1>
+        
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+    
+    </tr>
+
+{% for defensoria in defensorias %}
+	
+{# 	{{ dump(user) }} #}
+    <tr>
+        	<td>{{ defensoria.org_id}}</td>
+        	<td>{{ defensoria.org_descr }}</td>
+        	<td>{{ defensoria.org_mail }}</td>
+
+    </tr>
+
+{% endfor %}
+
+
+
+</table>
+
+
+
+{% endblock %}
